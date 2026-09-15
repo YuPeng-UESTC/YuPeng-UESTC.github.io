@@ -1,0 +1,171 @@
+:root {
+  --primary: #1a56db;
+  --dark: #1f2937;
+  --gray: #6b7280;
+  --border: #e5e7eb;
+  --sidebar-bg: #f9fafb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--dark);
+  line-height: 1.7;
+  background: #fff;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ========== 布局：左侧导航 + 右侧内容 ========== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---- 左侧导航栏 ---- */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  padding: 40px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+/* 头像：圆角矩形 */
+.sidebar .avatar { text-align: center; margin-bottom: 8px; }
+.sidebar .avatar img {
+  width: 130px; height: 180px;
+  border-radius: 12px;               /* 圆角矩形 */
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.sidebar .name {
+  text-align: center; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px;
+}
+.sidebar .name-sub {
+  text-align: center;
+  color: var(--gray);
+  font-size: .82rem;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;   /* 纵向排列 */
+  gap: 2px;                 /* 两行之间的间距 */
+}
+
+
+.nav-links { list-style: none; }
+.nav-links li { margin-bottom: 4px; }
+.nav-links a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  color: var(--gray); font-size: .98rem;
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: #eef2ff; color: var(--primary); text-decoration: none; }
+.nav-links a.active { background: var(--primary); color: #fff; font-weight: 600; }
+
+/* 社交链接：竖排 */
+.sidebar .social {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: .9rem;
+}
+.sidebar .social a {
+  color: var(--gray);
+  transition: color .15s;
+}
+.sidebar .social a:hover { color: var(--primary); text-decoration: none; }
+
+/* ---- 右侧内容区（flex 纵向布局，用于固定页脚） ---- */
+.content {
+  flex: 1;
+  max-width: 960px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.content h1 { font-size: 2rem; margin-bottom: 6px; }
+.content h2 {
+  font-size: 1.4rem; margin: 36px 0 16px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.content p { margin-bottom: 12px; }
+
+/* ---- 论文列表（bullet 一行一篇） ---- */
+.pub-list { list-style: none; }
+.pub-list li {
+  padding: 12px 0 12px 20px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.pub-list li::before {
+  content: "•";
+  position: absolute; left: 4px;
+  color: var(--primary); font-weight: 700;
+}
+.pub-list li:last-child { border-bottom: none; }
+.pub-title { font-weight: 600; }
+.pub-meta { font-size: .92rem; color: var(--gray); }
+.pub-meta .venue { color: var(--primary); font-weight: 600; }
+.pub-links { font-size: .88rem; }
+.pub-links a { margin-right: 10px; }
+
+/* ---- 联系卡片 ---- */
+.contact-card {
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 24px; margin-bottom: 16px;
+}
+.contact-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.contact-card p { color: var(--gray); font-size: .95rem; margin: 0; }
+
+/* ---- 页脚：自动固定在视口底端 ---- */
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--gray);
+  font-size: .9rem;
+}
+
+/* ---- 移动端适配：侧栏变顶部导航 ---- */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    width: 100%; height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--border);
+    padding: 24px 20px;
+  }
+  .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+  .nav-links li { margin: 0; }
+  .sidebar .social { border-top: none; padding-top: 12px; }
+  .content { padding: 32px 20px; }
+}
+
+/* ---- 语言切换按钮 ---- */
+.lang-btn {
+  margin-top: 20px; padding: 8px 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: #fff; color: var(--gray);
+  font-size: .9rem; cursor: pointer; width: 100%;
+  transition: background .15s, color .15s;
+}
+.lang-btn:hover { background: #eef2ff; color: var(--primary); }
+
+/* ---- 学术服务列表 ---- */
+.service-list { padding-left: 1.4rem; line-height: 2.1; }
+.service-list li { list-style: disc; }
+
+/* ---- 论文说明行 ---- */
+.pub-note { color: var(--gray); font-size: .9rem; }
+
