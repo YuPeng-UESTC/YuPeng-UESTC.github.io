@@ -19,10 +19,7 @@ a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ========== 布局：左侧导航 + 右侧内容 ========== */
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
+.layout { display: flex; min-height: 100vh; }
 
 /* ---- 左侧导航栏 ---- */
 .sidebar {
@@ -39,37 +36,53 @@ a:hover { text-decoration: underline; }
 /* 头像：圆角矩形 */
 .sidebar .avatar { text-align: center; margin-bottom: 8px; }
 .sidebar .avatar img {
-  width: 130px; height: 180px;
-  border-radius: 12px;               /* 圆角矩形 */
+  width: 140px;
+  height: 180px;
+  border-radius: 12px;
   object-fit: cover;
   border: 3px solid #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
 .sidebar .name {
-  text-align: center; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
 }
+
 .sidebar .name-sub {
   text-align: center;
   color: var(--gray);
   font-size: .82rem;
   margin-bottom: 28px;
   display: flex;
-  flex-direction: column;   /* 纵向排列 */
-  gap: 2px;                 /* 两行之间的间距 */
+  flex-direction: column;
+  gap: 2px;
 }
-
 
 .nav-links { list-style: none; }
 .nav-links li { margin-bottom: 4px; }
 .nav-links a {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px; border-radius: 8px;
-  color: var(--gray); font-size: .98rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--gray);
+  font-size: .98rem;
   transition: background .15s, color .15s;
 }
-.nav-links a:hover { background: #eef2ff; color: var(--primary); text-decoration: none; }
-.nav-links a.active { background: var(--primary); color: #fff; font-weight: 600; }
+.nav-links a:hover {
+  background: #eef2ff;
+  color: var(--primary);
+  text-decoration: none;
+}
+.nav-links a.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
 
 /* 社交链接：竖排 */
 .sidebar .social {
@@ -81,13 +94,10 @@ a:hover { text-decoration: underline; }
   gap: 10px;
   font-size: .9rem;
 }
-.sidebar .social a {
-  color: var(--gray);
-  transition: color .15s;
-}
+.sidebar .social a { color: var(--gray); transition: color .15s; }
 .sidebar .social a:hover { color: var(--primary); text-decoration: none; }
 
-/* ---- 右侧内容区（flex 纵向布局，用于固定页脚） ---- */
+/* ---- 右侧内容区 ---- */
 .content {
   flex: 1;
   max-width: 960px;
@@ -95,36 +105,56 @@ a:hover { text-decoration: underline; }
   display: flex;
   flex-direction: column;
 }
+
 .content h1 { font-size: 2rem; margin-bottom: 6px; }
 .content h2 {
-  font-size: 1.4rem; margin: 36px 0 16px;
-  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  font-size: 1.4rem;
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
 }
 .content p { margin-bottom: 12px; }
 
-/* ---- 论文列表（bullet 一行一篇） ---- */
-.pub-list { list-style: none; }
+/* ============ 论文列表：精致圆点 ============ */
+.pub-list { list-style: none; padding: 0; }
+
 .pub-list li {
-  padding: 12px 0 12px 20px;
-  border-bottom: 1px solid var(--border);
   position: relative;
+  padding: 10px 0 10px 22px;
+  border-bottom: 1px solid var(--border);
 }
+
+/* 小圆点：主色实心 + 淡蓝外圈 */
 .pub-list li::before {
-  content: "•";
-  position: absolute; left: 4px;
-  color: var(--primary); font-weight: 700;
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 22px;                    /* 对齐论文第一行 */
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, .12);
 }
+
+/* 期刊/会议名：主色加粗 */
+.pub-list .venue {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 .pub-list li:last-child { border-bottom: none; }
-.pub-title { font-weight: 600; }
-.pub-meta { font-size: .92rem; color: var(--gray); }
-.pub-meta .venue { color: var(--primary); font-weight: 600; }
-.pub-links { font-size: .88rem; }
-.pub-links a { margin-right: 10px; }
+
+/* 论文说明行 */
+.pub-note { color: var(--gray); font-size: .9rem; }
 
 /* ---- 联系卡片 ---- */
 .contact-card {
-  border: 1px solid var(--border); border-radius: 10px;
-  padding: 24px; margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
 }
 .contact-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .contact-card p { color: var(--gray); font-size: .95rem; margin: 0; }
@@ -142,8 +172,11 @@ footer {
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
   .sidebar {
-    width: 100%; height: auto; position: static;
-    border-right: none; border-bottom: 1px solid var(--border);
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
     padding: 24px 20px;
   }
   .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
@@ -154,18 +187,55 @@ footer {
 
 /* ---- 语言切换按钮 ---- */
 .lang-btn {
-  margin-top: 20px; padding: 8px 14px;
-  border: 1px solid var(--border); border-radius: 8px;
-  background: #fff; color: var(--gray);
-  font-size: .9rem; cursor: pointer; width: 100%;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--gray);
+  font-size: .9rem;
+  cursor: pointer;
+  width: 100%;
   transition: background .15s, color .15s;
 }
 .lang-btn:hover { background: #eef2ff; color: var(--primary); }
 
-/* ---- 学术服务列表 ---- */
-.service-list { padding-left: 1.4rem; line-height: 2.1; }
-.service-list li { list-style: disc; }
+/* ---- 研究方向 & 学术服务列表：彩色圆点 ---- */
+.interest-list, .service-list {
+  list-style: none;
+  padding-left: 0;
+}
+.interest-list li, .service-list li {
+  position: relative;
+  padding: 6px 0 6px 26px;
+  line-height: 1.9;
+}
+.interest-list li::before, .service-list li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, .15);
+}
 
-/* ---- 论文说明行 ---- */
-.pub-note { color: var(--gray); font-size: .9rem; }
-
+/* ---- 研究方向：标签胶囊式（备用） ---- */
+.interest-list2 {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.interest-list2 li {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: var(--primary);
+  font-size: .92rem;
+  font-weight: 500;
+}
